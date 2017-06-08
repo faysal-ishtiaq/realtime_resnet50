@@ -17,7 +17,7 @@ class MyThread(threading.Thread):
 
     def run(self):
         global label
-        self.ard = serial.Serial(self.get_serial_port(), baudrate=9600, timeout=3)
+        #self.ard = serial.Serial(self.get_serial_port(), baudrate=9600, timeout=3)
         # Load the VGG16 network
         print("[INFO] loading network...")
         self.model = ResNet50(weights="imagenet")
@@ -31,7 +31,7 @@ class MyThread(threading.Thread):
         image = preprocess_input(image)
         preds = self.model.predict(image)
         label = decode_predictions(preds)[0][0][0:2]
-        self.write_arduino(label)
+        #self.write_arduino(label)
         return label
 
     def write_arduino(self, label):
